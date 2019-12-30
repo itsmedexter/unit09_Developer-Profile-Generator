@@ -88,10 +88,21 @@ function generateHtml(userData) {
 
     return `
                 <div>
-                    <p>Login: ${userData.login}</p>
+                    <p><img src="${userData.avatar_url}"><br>
+                    Login: ${userData.login}<br>
+                    Repositories: ${userData.public_repos}<br>
+                    Followers: ${userData.followers}<br>
+                    Following: ${userData.following}<br>
+                    Stars: ${userData.stars}<br>
+                    Github Profile: ${userData.html_url}<br>
+                    Blog: ${userData.blog}<br>
+                    </p>
+                    
                 </div>
                 `
                 // make html doc within the return and use the generatedHTML.js to use styles. sample above.
+                // Repositories: ${userData.repo.name}<br>
+
 }
 
 
