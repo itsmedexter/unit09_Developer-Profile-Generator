@@ -40,7 +40,7 @@ const axios = require("axios");
 const inquirer = require("inquirer");
 const convertFactory = require('electron-html-to');
 const path = require('path');
- 
+
 
 inquirer
   .prompt({
@@ -67,7 +67,7 @@ inquirer
               return console.error(err);
             }
           
-            result.stream.pipe(fs.createWriteStream(path.join(__dirname, 'fakeData.pdf')));
+            result.stream.pipe(fs.createWriteStream(path.join(__dirname, 'githubprofile.pdf')));
             conversion.kill(); // necessary if you use the electron-server strategy, see bellow for details
           });
     }).catch(function(err){
@@ -87,7 +87,86 @@ function generateHtml(userData) {
     */
 
     return `
-                <div>
+                
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+                    <title>Document</title>
+                    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+                
+                    <style>
+                    body {
+                    font-family: 'Raleway', sans-serif;
+                
+                }
+                
+                .first-div {
+                    position: relative;
+                    margin: auto;
+                    width: 600px;
+                    height: 600px;
+                    background-color: lightgray;
+                    border: 4px solid gray;
+                    border-radius: 10px;
+                    padding: 20px;
+                    text-align: center;
+                }
+                .second-div {
+                    margin-right: 10px;
+                    position: absolute;
+                    top: 360px;
+                    left: 10px;
+                    float: left;
+                    width: 250px;
+                    height: 220px;
+                    background-color: lightgray;
+                    border: 4px solid white;
+                    border-radius: 10px;
+                    padding: 20px;
+                    text-align: center;
+                }    
+                .third-div {
+                    margin-left: 10px;
+                    position: absolute;
+                    top: 360px;
+                    left: 320px;
+                    float: left;
+                    width: 250px;
+                    height: 220px;
+                    background-color: lightgray;
+                    border: 4px solid white;
+                    border-radius: 10px;
+                    padding: 20px;
+                    text-align: center;
+                }       
+                    
+                    </style>
+                </head>
+                <body>
+                 <div class="first-div"><img src="${userData.avatar_url}"><br><h2><strong>Login:</strong> ${userData.login}</h2>
+                 <p><strong>Repositories:</strong> ${userData.public_repos}</p>
+                <div class="second-div">
+                    <p><strong>Followers:</strong> ${userData.followers}<br>
+                    <strong>Following:</strong> ${userData.following}<br>
+                    <strong>Stars:</strong> ${userData.stars}</p>
+                </div>
+                <div class="third-div"><strong>Github Profile:</strong> ${userData.html_url}<br>
+                <strong>Blog:</strong> ${userData.blog}<br></p>
+                </div>
+                </div>
+                </body>
+
+
+
+
+                `
+                // make html doc within the return and use the generatedHTML.js to use styles. sample above.
+                // Repositories: ${userData.repo.name}<br>
+
+}
+
+{/* <div>
                     <p><img src="${userData.avatar_url}"><br>
                     Login: ${userData.login}<br>
                     Repositories: ${userData.public_repos}<br>
@@ -98,13 +177,7 @@ function generateHtml(userData) {
                     Blog: ${userData.blog}<br>
                     </p>
                     
-                </div>
-                `
-                // make html doc within the return and use the generatedHTML.js to use styles. sample above.
-                // Repositories: ${userData.repo.name}<br>
-
-}
-
+                </div> */}
 
 
 
