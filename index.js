@@ -1,7 +1,5 @@
-// 
-
-
-// use axios to make an api request for owner, repo names, starring  to github: 
+// notes
+// use axios to make an api request for owner, repo names, starring  to github (code from class activity 33 used "axios"): 
 // GET /users/:username
 // git avatar: GET /user/:username/avatar_url
 // git repository: GET /user/repos
@@ -14,7 +12,9 @@
 // User github profile: GET /users/:username/html_url
 // user blog: GET /users/:username/blog
 
+// while waiting on user data from api, function to create a html document is created with specific parameters from GitHub to be placed on page.
 
+// Get a better understanding on promis, and callbacks .then, error result
 
 
 
