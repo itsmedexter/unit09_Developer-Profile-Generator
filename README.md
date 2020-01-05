@@ -17,22 +17,19 @@ Here is a GitHub profile generator made in javascript, Node Js. When run in the 
 Any web browser can access or view link, repository. Use Command line or Terminal with Node JS installed to view index.js file.
 
 ## Built With
-
 * [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
 * [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
 * [NodeJs] (https://nodejs.org/en/about/)
 * [NPM] (https://www.npmjs.com/)
 
 ## Deployed Link
-
-* [See Live Site]( https://itsmedexter.github.io/basic-portfolio/)
+* No live site, see "Link to Portfolio Site"
 
 
 ## Authors
-
 Dexter Valencia 
 
-- [Link to Portfolio Site](https://github.com/itsmedexter/basic-portfolio)
+- [Link to Portfolio Site](https://github.com/itsmedexter/unit09_Developer-Profile-Generator)
 - [Link to Github](https://github.com/itsmedexter)
 - [Link to LinkedIn](https://www.linkedin.com/in/dextervalencia/)
 
@@ -42,4 +39,4 @@ This project is licensed under the MIT License
 
 ## Acknowledgments
 
-* Thanks Kerwin for reminder on mediaquery.  
+* Thanks to all for the help.  
