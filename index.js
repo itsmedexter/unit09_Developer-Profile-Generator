@@ -40,6 +40,8 @@ const axios = require("axios");
 const inquirer = require("inquirer");
 const convertFactory = require('electron-html-to');
 const path = require('path');
+var pdf = require("html-pdf");
+var options = { format:"Letter"};
 
 
 inquirer
@@ -57,19 +59,29 @@ inquirer
         var html = generateHtml(res.data);
         console.log(html);
         writeToFile(html);
-        const conversion = convertFactory({
-            converterPath: convertFactory.converters.PDF
+        return html
+
+    
+    }).then(function(html){
+        pdf.create(html, options).toFile('./githubprofile.pdf', function(err, res) {
+            if (err) return console.log(err);
+            console.log(res); // { filename: '/app/businesscard.pdf' }
           });
+
+
+        // var conversion = convertFactory({
+        //     converterPath: convertFactory.converters.PDF
+        //   });
            
-          conversion({ html }, function(err, result) {
-            if (err) {
-                console.log('Our error occured')
-              return console.error(err);
-            }
+        //   conversion({ html:html }, function(err, result) {
+        //     if (err) {
+        //         console.log('Our error occured')
+        //       return console.error(err);
+        //     }
           
-            result.stream.pipe(fs.createWriteStream(path.join(__dirname, 'githubprofile.pdf')));
-            conversion.kill(); // necessary if you use the electron-server strategy, see bellow for details
-          });
+        //     result.stream.pipe(fs.createWriteStream(path.join(__dirname, 'githubprofile.pdf')));
+        //     conversion.kill(); // necessary if you use the electron-server strategy, see bellow for details
+        //   });
     }).catch(function(err){
         if(err) {
             console.log('User not found')
@@ -92,7 +104,7 @@ function generateHtml(userData) {
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
                     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-                    <title>Document</title>
+                    <title>GitHub Profile Generator</title>
                     <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
                 
                     <style>
@@ -105,9 +117,9 @@ function generateHtml(userData) {
                     position: relative;
                     margin: auto;
                     width: 600px;
-                    height: 600px;
-                    background-color: lightgray;
-                    border: 4px solid gray;
+                    height: 560px;
+                    background: thistle;
+                    border: 4px solid #696969;
                     border-radius: 10px;
                     padding: 20px;
                     text-align: center;
@@ -117,10 +129,9 @@ function generateHtml(userData) {
                     position: absolute;
                     top: 360px;
                     left: 10px;
-                    float: left;
                     width: 250px;
-                    height: 220px;
-                    background-color: lightgray;
+                    height: 180px;
+                    background-color: aquamarine;
                     border: 4px solid white;
                     border-radius: 10px;
                     padding: 20px;
@@ -131,28 +142,47 @@ function generateHtml(userData) {
                     position: absolute;
                     top: 360px;
                     left: 320px;
-                    float: left;
                     width: 250px;
-                    height: 220px;
-                    background-color: lightgray;
+                    height: 180px;
+                    background-color: aquamarine;
                     border: 4px solid white;
                     border-radius: 10px;
-                    padding: 20px;
+                    padding: 20px 20px;
                     text-align: center;
                 }       
-                    
+                
+                a:link{
+                    color: black;
+                    text-decoration: none;
+                }
+
+                a:visited{
+                    color: gray;
+                    text-decoration: none;
+                }
+
+                a:hover {
+                    color: orange;
+                    text-decoration: none;
+                }
+
+                a:active {
+                    color: black;
+                    text-decoration: none;
+                }
                     </style>
                 </head>
                 <body>
-                 <div class="first-div"><img src="${userData.avatar_url}"><br><h2><strong>Login:</strong> ${userData.login}</h2>
-                 <p><strong>Repositories:</strong> ${userData.public_repos}</p>
+                 <div class="first-div"><img src="${userData.avatar_url}"><br><h2>Login: ${userData.login}</h2>
+                 <p>Location: <a href="https://www.google.com/maps/place/${userData.location}">${userData.location}</a><br>Repositories: ${userData.public_repos}</p>
+
                 <div class="second-div">
-                    <p><strong>Followers:</strong> ${userData.followers}<br>
-                    <strong>Following:</strong> ${userData.following}<br>
-                    <strong>Stars:</strong> ${userData.stars}</p>
+                    <p>Followers: ${userData.followers}<br><br>
+                    Following: ${userData.following}<br><br>
+                    Stars: ${userData.starred}</p>
                 </div>
-                <div class="third-div"><strong>Github Profile:</strong> ${userData.html_url}<br>
-                <strong>Blog:</strong> ${userData.blog}<br></p>
+                <div class="third-div"><p>Link to: <a href="${userData.html_url}">Github Profile</a> <br><br>
+                Link to: <a href="${userData.blog}">Blog</a> <br></p>
                 </div>
                 </div>
                 </body>
