@@ -4,7 +4,9 @@ Here is a GitHub profile generator made in javascript, Node Js. When run in the 
 
 ## Always Under Construction 
 
- 1. It was difficult to do, but with help from my tutor, I got an understanding of whats going on with the code. He told me first  console log a username from github using axios. From there, I was able to see the API information needed. Then slowly it was put together. 
+ 1. It was difficult to do, but with help from my tutor, I got an understanding of whats going on with the code. He gave me a clue to  console log a username from github using axios. From there, I was able to see the API information needed. Then slowly it was put together.
+ 
+ 2. I tried several things on the stars, stargazers, starred, stargazers_count, but I keep getting undefine? I see a blank array, that should at least give me 0.
  
 
 ### Animation, generated HTML, pdf of profiler
